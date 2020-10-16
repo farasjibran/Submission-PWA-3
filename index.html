@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Football App</title>
+    <meta name="description" content="Football App" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/materialize.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mailtoharshit/San-Francisco-Font-/sanfrancisco.css">
+    <link rel="stylesheet" href="css/fontawesome-free/css/all.min.css">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#5DA9DB" />
+
+    <style>
+        /* For Android */
+        @media only screen and (max-width: 360px) {
+            .brand-logo {
+                margin-top: -3px;
+            }
+
+            .text {
+                visibility: hidden;
+            }
+        }
+    </style>
+</head>
+
+<body style="font-family: San Francisco;">
+    <!-- Navigasi -->
+    <nav role="navigation" style="background-color: #5DA9DB;">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo" id="logo-container"><img src="icon.png" alt="logo gambar" width="40"
+                    style="margin-top: 10px;"></a>
+            <a href="#" class="brand-logo text" style="margin-left: 6%;">Football App</a>
+            <a href="#" class="sidenav-trigger" data-target="nav-mobile">&#9776;</a>
+
+            <ul class="topnav right hide-on-med-and-down"></ul>
+            <ul class="sidenav" id="nav-mobile"></ul>
+        </div>
+    </nav>
+    <!-- Akhir Navigasi -->
+
+    <div class="container" id="body-content"></div>
+
+    <!-- Footer -->
+    <footer class="page-footer darken-2" style="background-color: #5DA9DB;">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text"><b>Football App</b></h5>
+                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like
+                        it's our full time job. Any amount would help support and continue development on this project
+                        and is greatly appreciated.</p>
+
+
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text"><b>Pages</b></h5>
+                    <ul>
+                        <li><a class="white-text" href="#standings">Standings</a></li>
+                        <li><a class="white-text" href="#matches">Matches</a></li>
+                        <li><a class="white-text" href="#favorite">Favorite</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text"><b>Connect</b></h5>
+                    <ul>
+                        <li><a class="white-text" href="https://github.com/farasjibran?tab=repositories"><i
+                                    class="fab fa-github"></i> Github</a></li>
+                        <li><a class="white-text" href="https://www.instagram.com/farasjbrn/"><i
+                                    class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a class="white-text" href="mailto:farasjibran@gmail.com"><i class="far fa-envelope"></i>
+                                Gmail</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Made by <a class="light-blue-text text-lighten-3"
+                    href="https://www.instagram.com/farasjbrn/">@farasjbrn</a>
+            </div>
+        </div>
+    </footer>
+    <!-- Akhir Footer -->
+
+    <script type="text/javascript" src="js/idb.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/items.js"></script>
+    <script src="js/db.js"></script>
+
+    <script>
+        // REGISTER SERVICE WORKER
+        if (!('serviceWorker' in navigator)) {
+            console.log("Service worker tidak didukung browser ini.");
+        } else {
+            registerServiceWorker();
+            requestPermission();
+        }
+        // Register service worker
+        function registerServiceWorker() {
+            return navigator.serviceWorker.register('service-worker.js')
+                .then(function (registration) {
+                    console.log('Registrasi service worker berhasil.');
+                    return registration;
+                })
+                .catch(function (err) {
+                    console.error('Registrasi service worker gagal.', err);
+                });
+        }
+
+        function requestPermission() {
+            if ('Notification' in window) {
+                Notification.requestPermission().then(function (result) {
+                    if (result === "denied") {
+                        console.log("Fitur notifikasi tidak diijinkan.");
+                        return;
+                    } else if (result === "default") {
+                        console.error("Pengguna menutup kotak dialog permintaan ijin.");
+                        return;
+                    }
+
+                    if (('PushManager' in window)) {
+                        navigator.serviceWorker.getRegistration().then(function (registration) {
+                            registration.pushManager.subscribe({
+                                userVisibleOnly: true,
+                                applicationServerKey: urlBase64ToUint8Array(
+                                    "BJ3_s-UOJLJ6BNpoy-y4frtItgYZVllsYRgaJjU1MFKKCdCFo-Y9Dxi-v5iSO0ep8VGTHTX4iP-xF6LtMjUvBMs"
+                                )
+                            }).then(function (subscribe) {
+                                console.log('Berhasil melakukan subscribe dengan endpoint: ',
+                                    subscribe.endpoint);
+                                console.log('Berhasil melakukan subscribe dengan p256dh key: ',
+                                    btoa(String.fromCharCode
+                                        .apply(
+                                            null, new Uint8Array(subscribe.getKey('p256dh'))
+                                        )));
+                                console.log('Berhasil melakukan subscribe dengan auth key: ',
+                                    btoa(String.fromCharCode
+                                        .apply(
+                                            null, new Uint8Array(subscribe.getKey('auth'))))
+                                );
+                            }).catch(function (e) {
+                                console.error('Tidak dapat melakukan subscribe ', e.message);
+                            });
+                        });
+                    }
+                });
+            }
+
+            function urlBase64ToUint8Array(base64String) {
+                const padding = '='.repeat((4 - base64String.length % 4) % 4);
+                const base64 = (base64String + padding)
+                    .replace(/-/g, '+')
+                    .replace(/_/g, '/');
+                const rawData = window.atob(base64);
+                const outputArray = new Uint8Array(rawData.length);
+                for (let i = 0; i < rawData.length; ++i) {
+                    outputArray[i] = rawData.charCodeAt(i);
+                }
+                return outputArray;
+            }
+        }
+    </script>
+</body>
+
+</html>

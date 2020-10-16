@@ -1,0 +1,16 @@
+{
+    "name": "Football App",
+    "short_name": "Football",
+    "description": "Football App Is Information Football",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "theme_color": "#5DA9DB",
+    "background_color": "#5DA9DB",
+    "icons": [{
+        "src": "icon.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable"
+    }],
+    "gcm_sender_id": "1098763227035"
+}
