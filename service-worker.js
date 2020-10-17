@@ -15,6 +15,7 @@ var urlsToCache = [
     "/js/db.js",
     "/pages/standings.html",
     "/pages/faforit.html",
+    "/pages/matches.html",
     "https://cdn.jsdelivr.net/gh/mailtoharshit/San-Francisco-Font-/sanfrancisco.css",
     "/css/fontawesome-free/css/all.min.css",
     "/css/fontawesome-free/webfonts/fa-solid-900.ttf",

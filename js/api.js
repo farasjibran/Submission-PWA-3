@@ -4,15 +4,6 @@ const basedUrl = "https://api.football-data.org/";
 const urlStandings = `${basedUrl}v2/competitions/${code}/standings?standingType=TOTAL`;
 const urlMatches = `${basedUrl}v2/competitions/${code}/matches?status=SCHEDULED`;
 let urlTeam = `${basedUrl}v2/teams/`;
-
-function json(response) {
-    return response.json();
-}
-
-function error(error) {
-    console.log("Error : " + error);
-}
-
 let fetchApi = url => {
     return fetch(url, {
         method: "GET",
@@ -21,6 +12,14 @@ let fetchApi = url => {
         }
     });
 };
+
+function json(response) {
+    return response.json();
+}
+
+function error(error) {
+    console.log("Error : " + error);
+}
 
 function status(response) {
     if (response.status !== 200) {
