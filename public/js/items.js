@@ -1,11 +1,6 @@
 function component_standings(data) {
-    // console.log(data.standings[0].table);
     let standHTML = "";
     data.standings[0].table.forEach(data => {
-        // console.log(data.team.name)
-        // standHTML += `<p>${data.team.name}`;
-        // data = JSON.parse(JSON.stringify(data).replace(/http:/g, 'https:'));
-        // console.log(data);
         standHTML += `<tr>
               <td class="center-align">${data.position}</td>
               <td>       

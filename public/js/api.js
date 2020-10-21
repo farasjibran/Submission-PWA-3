@@ -4,6 +4,7 @@ const basedUrl = "https://api.football-data.org/";
 const urlStandings = `${basedUrl}v2/competitions/${code}/standings?standingType=TOTAL`;
 const urlMatches = `${basedUrl}v2/competitions/${code}/matches?status=SCHEDULED`;
 let urlTeam = `${basedUrl}v2/teams/`;
+
 let fetchApi = url => {
     return fetch(url, {
         method: "GET",
@@ -36,6 +37,7 @@ function standingsGet() {
         caches.match(urlStandings).then(function (response) {
             if (response) {
                 response.json().then(data => {
+                    console.log(`Standings Data: ${data}`);
                     component_standings(data);
                 });
             }
@@ -56,6 +58,7 @@ function matchesGet() {
         caches.match(urlMatches).then(response => {
             if (response) {
                 response.json().then(data => {
+                    console.log(`Standings Data: ${data}`);
                     component_matches(data);
                 });
             }
@@ -67,8 +70,7 @@ function matchesGet() {
         .then(json)
         .then(data => {
             component_matches(data);
-        })
-        .catch(error);
+        }).catch(error);
 }
 
 function teamGet(id) {
