@@ -4,7 +4,7 @@ function component_standings(data) {
     data.standings[0].table.forEach(data => {
         // console.log(data.team.name)
         // standHTML += `<p>${data.team.name}`;
-        data = JSON.parse(JSON.stringify(data).replace(/http:/g, 'https:'));
+        // data = JSON.parse(JSON.stringify(data).replace(/http:/g, 'https:'));
         // console.log(data);
         standHTML += `<tr>
               <td class="center-align">${data.position}</td>
@@ -23,7 +23,7 @@ function component_standings(data) {
               <td class="center-align">${data.lost}</td>       
               <td class="center-align">${data.points}</td>
               <td class="center-align">
-              <a class="waves-effect waves-light" onClick="favorite(${data.team.id})"><i class="fas fa-plus-circle fa-2x"></i></a>
+              <a class="waves-effect waves-light" onClick="favorite(${data.team.id})"><i class="small material-icons">add_circle</i></a>
               </td>
             </tr>`;
 
@@ -76,7 +76,7 @@ function favoriteTeam() {
             <div class="center-align card">
               <div class="card-image">
                 <img class="responsive-img" src="${team.crestUrl}" style="width:250px; padding-top:20px">
-                <a class="center-align btn-floating halfway-fab waves-effect waves-light red" onClick="deletefavorite(${team.id},'team')" style="top:107%; right:5%"><i class="fas fa-trash"></i></a>
+                <a class="center-align btn-floating halfway-fab waves-effect waves-light red" onClick="deletefavorite(${team.id},'team')" style="top:107%; right:5%"><i class="material-icons">delete</i></a>
               </div>
               <div class="card-content">
                 <span class="card-title" style="margin-left: -20%">${team.name}</span>

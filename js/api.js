@@ -88,6 +88,6 @@ function teamGet(id) {
             .then(json)
             .then(data => {
                 resolve(data);
-            });
+            }).catch(e => console.error(e));
     });
 }

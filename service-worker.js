@@ -17,15 +17,7 @@ var urlsToCache = [
     "/pages/faforit.html",
     "/pages/matches.html",
     "https://cdn.jsdelivr.net/gh/mailtoharshit/San-Francisco-Font-/sanfrancisco.css",
-    "/css/fontawesome-free/css/all.min.css",
-    "/css/fontawesome-free/webfonts/fa-solid-900.ttf",
-    "/css/fontawesome-free/webfonts/fa-brands-400.ttf",
-    "/css/fontawesome-free/webfonts/fa-regular-400.ttf",
-    "/css/fontawesome-free/webfonts/fa-solid-900.woff2",
-    "/css/fontawesome-free/webfonts/fa-brands-400.woff",
-    "/css/fontawesome-free/webfonts/fa-regular-400.woff",
-    "/css/fontawesome-free/webfonts/fa-brands-400.woff2",
-    "/css/fontawesome-free/webfonts/fa-regular-400.woff2"
+    "https://fonts.googleapis.com/icon?family=Material+Icons"
 ];
 
 self.addEventListener("install", function (event) {
