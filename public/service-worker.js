@@ -84,12 +84,16 @@ if (workbox) {
 
     workbox.routing.registerRoute(
         new RegExp('https://cdn.jsdelivr.net/gh/mailtoharshit/San-Francisco-Font-/sanfrancisco.css'),
-        workbox.strategies.staleWhileRevalidate()
+        workbox.strategies.staleWhileRevalidate({
+            cacheName: 'google-fonts-stylesheets',
+        })
     );
 
     workbox.routing.registerRoute(
         new RegExp('https://fonts.googleapis.com/icon?family=Material+Icons'),
-        workbox.strategies.staleWhileRevalidate()
+        workbox.strategies.staleWhileRevalidate({
+            cacheName: 'google-fonts-stylesheets',
+        })
     );
 
     workbox.routing.registerRoute(
