@@ -74,7 +74,9 @@ if (workbox) {
     );
     workbox.routing.registerRoute(
         new RegExp('https://api.football-data.org/'),
-        workbox.strategies.staleWhileRevalidate()
+        workbox.strategies.staleWhileRevalidate({
+            cacheName: 'api-football',
+        })
     );
 
     workbox.routing.registerRoute(
@@ -83,14 +85,14 @@ if (workbox) {
     );
 
     workbox.routing.registerRoute(
-        new RegExp('https://cdn.jsdelivr.net/gh/mailtoharshit/San-Francisco-Font-/sanfrancisco.css'),
+        new RegExp('https://applesocial.s3.amazonaws.com'),
         workbox.strategies.staleWhileRevalidate({
-            cacheName: 'google-fonts-stylesheets',
+            cacheName: 'jsdelivr',
         })
     );
 
     workbox.routing.registerRoute(
-        new RegExp('https://fonts.googleapis.com/icon?family=Material+Icons'),
+        /.*(?:googleapis|gstatic)\.com/,
         workbox.strategies.staleWhileRevalidate({
             cacheName: 'google-fonts-stylesheets',
         })
